@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:8000'
+const API_BASE_URL = 'https://my-money-maker.onrender.com'
 
 export async function fetchTransactions() {
   const response = await fetch(`${API_BASE_URL}/transactions`)
