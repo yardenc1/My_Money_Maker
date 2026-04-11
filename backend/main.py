@@ -1,4 +1,5 @@
 from fastapi import Depends, FastAPI, Form
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
 from db import Base, engine, get_db
@@ -6,6 +7,18 @@ from models import Transaction
 from parser import parse_transaction
 
 app = FastAPI(title = 'My Money Maker API')
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = [
+        'https://my-money-maker-pi.vercel.app',
+        'https://my-money-maker-git-main-yardenco5900-6526s-projects.vercel.app',
+        'https://my-money-maker-9d3nv02mw-yardenco5900-6526s-projects.vercel.app',
+    ],
+    allow_credentials = True,
+    allow_methods = ['*'],
+    allow_headers = ['*'],
+)
 
 Base.metadata.create_all(bind = engine)
 
